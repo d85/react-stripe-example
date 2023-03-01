@@ -1,5 +1,5 @@
 import { createContext, useState } from "react"
-import { productsArray, getProductData } from "./productStore"
+import { productsArray, getProductData } from "./productsStore"
 
 export const CartContext = createContext({
   items: [],
@@ -83,7 +83,7 @@ export function CartProvider({children}) {
   }
 
   const contextValue = {
-    items: [],
+    items: cartProducts,
     getProductQuantity,
     addOneToCart,
     removeOneFromCart,
