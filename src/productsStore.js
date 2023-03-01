@@ -23,6 +23,8 @@ function getProductData(id) {
     console.log("Product data does not exist for ID: " + id)
     return undefined
   }
+
+  return productData
 }
 
 export { productsArray, getProductData }

@@ -1,5 +1,5 @@
 import { createContext, useState } from "react"
-import { productsArray, getProductData } from "./productsStore"
+import { getProductData } from "./productsStore"
 
 export const CartContext = createContext({
   items: [],
@@ -13,7 +13,7 @@ export const CartContext = createContext({
 export function CartProvider({children}) {
   const [cartProducts, setCartProducts] = useState([])
 
-  // [ { id: 1, quantity: 3 }, { id: 2, quantity 1} ]
+  // [ { id: 1, quantity: 3 }, { id: 2, quantity: 1} ]
 
   function getProductQuantity(id) {
     const quantity = cartProducts.find(product => product.id === id)?.quantity
@@ -75,11 +75,9 @@ export function CartProvider({children}) {
 
   function getTotalCost() {
     let totalCost = 0
-    cartProducts.map(cartItem => {
+    cartProducts.forEach(cartItem => {
       const productData = getProductData(cartItem.id)
-      if (productData) {
-        totalCost += (productData.price * cartItem.quantity)
-      }
+      totalCost += (productData.price * cartItem.quantity)
     })
     return totalCost
   }
